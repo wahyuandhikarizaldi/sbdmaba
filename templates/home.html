@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Klinik GenZ Dark</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, #00b4d8, #0077b6);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      margin-bottom: 5px;
+      font-size: 2.5em;
+      text-shadow: 0 0 8px #90e0ef;
+    }
+
+    h2 {
+      font-weight: normal;
+      font-size: 1.2em;
+      opacity: 0.8;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+
+    fieldset {
+      border: 1px solid #48cae4;
+      border-radius: 10px;
+      padding: 20px;
+      background: #1e1e1e;
+      box-shadow: 0 2px 10px rgba(0, 255, 255, 0.05);
+    }
+
+    legend {
+      font-weight: bold;
+      color: #00b4d8;
+      font-size: 1.1em;
+    }
+
+    label {
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #555;
+      border-radius: 6px;
+      background: #2a2a2a;
+      color: #eee;
+    }
+
+    input[type="submit"] {
+      background-color: #00b4d8;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0096c7;
+    }
+
+    .section-title {
+      padding: 0 30px;
+      font-size: 1.4em;
+      color: #90e0ef;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+      padding: 0 30px 30px;
+    }
+
+    .card {
+      background: #1f1f1f;
+      border-left: 5px solid #00b4d8;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.05);
+      font-family: monospace;
+    }
+
+    .card:hover {
+      background-color: #252525;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>💉 Klinik GenZ Manager</h1>
+    <h2>Interface gelap nan elegan ✨</h2>
+  </header>
+
+  <div class="grid-container">
+    <!-- Dokter -->
+    <form method="POST">
+      {{ f_create_dokter.hidden_tag() }}
+      <fieldset>
+        <legend>➕ Tambah Dokter</legend>
+        {{ f_create_dokter.nama.label }}<br>{{ f_create_dokter.nama }}
+        {{ f_create_dokter.spesialis.label }}<br>{{ f_create_dokter.spesialis }}
+        {{ f_create_dokter.no_telepon.label }}<br>{{ f_create_dokter.no_telepon }}
+        {{ f_create_dokter.simpan }}
+      </fieldset>
+    </form>
+
+    <form method="POST">
+      {{ f_update_dokter.hidden_tag() }}
+      <fieldset>
+        <legend>🛠️ Update Dokter</legend>
+        {{ f_update_dokter.id_dokter.label }}<br>{{ f_update_dokter.id_dokter }}
+        {{ f_update_dokter.nama.label }}<br>{{ f_update_dokter.nama }}
+        {{ f_update_dokter.spesialis.label }}<br>{{ f_update_dokter.spesialis }}
+        {{ f_update_dokter.no_telepon.label }}<br>{{ f_update_dokter.no_telepon }}
+        {{ f_update_dokter.update }}
+      </fieldset>
+    </form>
+
+    <form method="POST">
+      {{ f_delete_dokter.hidden_tag() }}
+      <fieldset>
+        <legend>❌ Hapus Dokter</legend>
+        {{ f_delete_dokter.id_dokter.label }}<br>{{ f_delete_dokter.id_dokter }}
+        {{ f_delete_dokter.hapus }}
+      </fieldset>
+    </form>
+
+    <!-- Pasien -->
+    <form method="POST">
+      {{ f_create_pasien.hidden_tag() }}
+      <fieldset>
+        <legend>➕ Tambah Pasien</legend>
+        {{ f_create_pasien.nama.label }}<br>{{ f_create_pasien.nama }}
+        {{ f_create_pasien.no_telepon.label }}<br>{{ f_create_pasien.no_telepon }}
+        {{ f_create_pasien.simpan }}
+      </fieldset>
+    </form>
+
+    <form method="POST">
+      {{ f_update_pasien.hidden_tag() }}
+      <fieldset>
+        <legend>🛠️ Update Pasien</legend>
+        {{ f_update_pasien.id_pasien.label }}<br>{{ f_update_pasien.id_pasien }}
+        {{ f_update_pasien.nama.label }}<br>{{ f_update_pasien.nama }}
+        {{ f_update_pasien.no_telepon.label }}<br>{{ f_update_pasien.no_telepon }}
+        {{ f_update_pasien.update }}
+      </fieldset>
+    </form>
+
+    <form method="POST">
+      {{ f_delete_pasien.hidden_tag() }}
+      <fieldset>
+        <legend>❌ Hapus Pasien</legend>
+        {{ f_delete_pasien.id_pasien.label }}<br>{{ f_delete_pasien.id_pasien }}
+        {{ f_delete_pasien.hapus }}
+      </fieldset>
+    </form>
+  </div>
+
+  <!-- Data -->
+  <div class="section-title">👨‍⚕️ Daftar Dokter</div>
+<div class="card-container">
+  {% for dokter in dokter_list %}
+    <div class="card">
+      🆔 {{ dokter["_id"] }}<br>
+      👤 {{ dokter["nama"] }}<br>
+      🩺 {{ dokter["spesialis"] }}<br>
+      📞 {{ dokter["no_telepon"] }}<br><br>
+      <form method="POST" action="/delete_dokter/{{ dokter['_id'] }}">
+        <input type="submit" value="❌ Hapus" style="background:#ef233c;">
+      </form>
+    </div>
+  {% endfor %}
+</div>
+
+
+<div class="section-title">🧍 Daftar Pasien</div>
+<div class="card-container">
+  {% for pasien in pasien_list %}
+    <div class="card">
+      🆔 {{ pasien["_id"] }}<br>
+      🙍 {{ pasien["nama"] }}<br>
+      📞 {{ pasien["no_telepon"] }}<br><br>
+      <form method="POST" action="/delete_pasien/{{ pasien['_id'] }}">
+        <input type="submit" value="❌ Hapus" style="background:#ef233c;">
+      </form>
+    </div>
+  {% endfor %}
+</div>
+
+
+</body>
+</html>
