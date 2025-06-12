@@ -24,6 +24,12 @@ To run the program, first you should make sure MongoDB is running, start it usin
 $ sudo service mongod start
 ```
 
+ato ga
+
+```
+$ net start MongoDB
+```
+
 then, run the program:
 
 ```
